@@ -1,12 +1,16 @@
 name: demoFlow
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Person name'
+        default: 'Team'
 
 jobs:
   echo:
     runs-on: ubuntu-latest
     steps:
       - name: Echo
-        run: echo "Hello, World!"    
+        run: echo "Hello, ${{ github.event.inputs.name }}!"
 
