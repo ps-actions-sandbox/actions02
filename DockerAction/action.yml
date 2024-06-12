@@ -1,0 +1,13 @@
+name: 'Docker Action'
+inputs: 
+  who-to-greet:
+    description: who's there?
+    default: attendees
+outputs:
+  time:
+    description: 'when it happened'
+runs:
+  using: docker
+  image: DockerFile
+  args:
+    - ${{ inputs.who-to-greet }}
