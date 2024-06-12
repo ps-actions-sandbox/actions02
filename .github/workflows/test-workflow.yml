@@ -2,6 +2,14 @@ name: test demo
 
 on: 
   workflow_dispatch:
+    inputs:
+      namefield:
+        type: choice
+        options:
+          - attendees
+          - team
+          - world
+        
 
 jobs:
   Step1:
@@ -9,5 +17,7 @@ jobs:
 
     steps:
       - name: step1
-        run: echo "hello everyone!"
+        run:  |
+          echo "hello ${{ github.event.inputs.namefield }}!"
+          echo "hello ${{ github.event.inputs.namefield }}!" >> $GITHUB_STEP_SUMMARY
 
