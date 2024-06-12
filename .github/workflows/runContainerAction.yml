@@ -1,0 +1,15 @@
+name: CI build for container action
+
+on:
+  workflow_dispatch:
+
+jobs:
+  container-run:
+    runs-on: unbuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@4
+      - name: run my container action
+        uses: ./DockerAction
+        with:
+          who-to-greet: everyone
