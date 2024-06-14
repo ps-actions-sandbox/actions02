@@ -13,6 +13,7 @@ jobs:
       matrix: 
         environment: [dev,test,qa]
     runs-on: ubuntu-latest
+    environment: ${{ matrix.environment }}
     steps:
       - name: Echo
         run: echo "Hello, ${{ matrix.environment}} ${{ vars.SERVICE_ACCOUNT }}"; echo " ${{ matrix.environment }} ${{ vars.SERVICE_ACCOUNT }} ">> $GITHUB_STEP_SUMMARY
