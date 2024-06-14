@@ -1,12 +1,19 @@
 name: demoFlow
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Person name'
+        default: 'Team'
 
 jobs:
   echo:
+    strategy:
+      matrix: 
+        environments: [dev,test,qa]
     runs-on: ubuntu-latest
     steps:
       - name: Echo
-        run: echo "Hello, World!"    
+        run: echo "Hello, ${{ matrix.environment }} ${{ vars.SERVICE_ACCOUNT }}"; echo " ${{ matrix.environment }} ${{ vars.SERVICE_ACCOUNT }} ">> $GITHUB_STEP_SUMMARY
 
