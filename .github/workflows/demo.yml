@@ -16,7 +16,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: "Bulding"
+      - run: echo "Bulding"
   test:
     runs-on: ubuntu-latest
     needs: build
