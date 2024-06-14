@@ -9,8 +9,11 @@ on:
 
 jobs:
   echo:
+    strategy:
+      matrix: 
+        environments: [dev,test,qa]
     runs-on: ubuntu-latest
     steps:
       - name: Echo
-        run: echo "Hello, ${{ github.event.inputs.name }}!"
+        run: echo "Hello, ${{ matrix.environment }} ${{ vars.SERVICE_ACCOUNT }}"; echo " ${{ matrix.environment }} ${{ vars.SERVICE_ACCOUNT }} ">> $GITHUB_STEP_SUMMARY
 
