@@ -18,7 +18,7 @@ jobs:
     steps:
       - run: echo "Bulding"
   test:
-    runs-on: ubuntu-latest
+    runs-on: DESKTOP-FLGRB30
     needs: build
     environment: dev
     steps:
@@ -26,7 +26,7 @@ jobs:
         run: echo "Hello, ${{ matrix.environment}} ${{ vars.SERVICE_ACCOUNT }}"; echo " ${{ matrix.environment }} ${{ vars.SERVICE_ACCOUNT }} ">> $GITHUB_STEP_SUMMARY
 
   load-test:
-    runs-on: ubuntu-latest
+    runs-on: DESKTOP-FLGRB30
     if: github.event_name == 'workflow_dispatch'
     needs: build
     environment: test
@@ -34,16 +34,15 @@ jobs:
       - name: sleepy
         run: |
           echo "testing 1,2,3"
-          sleep 5
   production:
-    runs-on: ubuntu-latest
+    runs-on: DESKTOP-FLGRB30
     if: github.event.inputs.environment == 'qa'
     needs: [test,load-test]
     environment: 
       name: qa
       url: https://writeabout.net
     steps:
-      - run: echo " step 1 " ; sleep 5
+      - run: echo " step 1 " ; tree
       - run: echo " step 2 " ; sleep 5
       - run: echo " step 3 " ; sleep 5
       - run: echo " step 4 " ; sleep 5
